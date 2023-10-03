@@ -39,7 +39,7 @@ sessionRouter.get('/faillogin', (req, res) => {
 });
 
 //registrando usuario
-sessionRouter.get('/github', passport.authenticate('github', { scope: ['user:email'] }), (req, res) => { 
+sessionRouter.get('/github', passport.authenticate('github', { scope: ['user:email']}), (req, res) => { 
     res.status(200).send({ resultado: 'Usuario creado exitosamente.' });
 });
 

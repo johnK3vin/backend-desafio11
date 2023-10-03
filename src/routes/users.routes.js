@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { userManager } from "../dao/models/userManager.js";
 import passport from "passport";
+import { createHash } from "../utils/bcrypt.js";
 const userRouter = Router()
 
 userRouter.get('/', async (req, res) =>{
@@ -32,7 +33,8 @@ userRouter.get('/:id', async (req, res) =>{
 userRouter.post('/', async (req, res) =>{
     const {first_name, last_name, age, email, password} = req.body
     try{
-        const newUser = await userManager.create({first_name, last_name, age, email, password})
+        const hashpass = await createHash(password)
+        const newUser = await userManager.create({first_name, last_name, age, email, password : hashpass})
         res.status(200).send({respuesta : 'OK' , mensaje : newUser})
     }catch(error){
         res.status(400).send({respuesta: 'Error' , mensaje : error})

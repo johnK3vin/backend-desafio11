@@ -3,6 +3,7 @@ import passport from "passport";
 import GithubStrategy from "passport-github2";
 import { createHash, validatePassword } from "../utils/bcrypt.js";
 import { userManager } from "../dao/models/userManager.js";
+import { userModel } from "../dao/models/users.models.js";
 
 const LocalStrategy = local.Strategy;
 
@@ -93,7 +94,7 @@ const InitializePassport = () => {
           console.log("accessToken:", accessToken);
           console.log("refreshToken:", refreshToken);
           console.log("profile:", profile._json);
-          const user = await userManager.findByEmail({email : profile._json.email});
+          const user = await userModel.findOne({email : profile._json.email});
           if (user) {
             return done(null, user);
           } else {
