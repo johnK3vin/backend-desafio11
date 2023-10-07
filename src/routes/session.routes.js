@@ -4,6 +4,9 @@ import passport from 'passport';
 const sessionRouter = Router()
 
 sessionRouter.post('/login', passport.authenticate('login',{failureRedirect: 'faillogin'}), async (req, res) => {
+    const email = req.body.email
+    const password = req.body.password
+    console.log(email, password)
     try {
         if(!req.user){
             res.status(401).send({ resultado: 'Usuario invalido' });
@@ -35,7 +38,7 @@ sessionRouter.post('/login', passport.authenticate('login',{failureRedirect: 'fa
 
 sessionRouter.get('/faillogin', (req, res) => {
     console.log('Error al iniciar sesión');
-    res.send({error: 'Failed login'})
+    res.redirect('/login');
 });
 
 //registrando usuario

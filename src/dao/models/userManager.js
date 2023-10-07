@@ -1,14 +1,25 @@
 import { userModel } from './users.models.js';
+import { prodModel } from './product.models.js';
 
 class UserManagerDAO {
-    async find(limit, page) {
-        let query = {};  
+    async find(limit, page, category, sort) {
+        let query = {};
+        if (category) {
+            query.category = category;
+        }
+    
         let options = {
             limit: parseInt(limit) || 10,
             page: parseInt(page) || 1
         };
-        return await userModel.paginate(query, options);
     
+        if (sort) {
+            options.sort = {
+                price: sort === 'asc' ? 1 : -1
+            };
+        }
+    
+        return await prodModel.paginate(query, options);
     }
 
     async findById(id) { 
@@ -28,7 +39,7 @@ class UserManagerDAO {
     }
     async findByEmail(email) {
         console.log(email)
-        return await userModel.findOne({ email: email });
+        return await userModel.findOne({email:email});
     }
     
     async deleteByEmail(email) {

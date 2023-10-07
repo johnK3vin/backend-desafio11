@@ -18,6 +18,7 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
         });
 
         const data = await response.json();
+        console.log(data)
 
         if (response.status === 200 || response.status === 401 ) {
             console.log("todo bien ")

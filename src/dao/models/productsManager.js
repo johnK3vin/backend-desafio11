@@ -27,7 +27,7 @@ class ProductManagerDAO {
     }
 
     async create(productData) {
-        return await prodModel.create(productData);
+        return await prodModel.create(productData); 
     }
 
     async updateById(code, productData) {

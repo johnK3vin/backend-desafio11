@@ -108,22 +108,11 @@ a[href="/api/session/githubCallback"] {
     color: white;
     margin: 5px;
 }
-.button-sesion{
-    display: none;
-    background-color: #D2E8E3;
-    padding: 10px;
+
+.button-sesion button{
+    border: none;
+    padding: 5px;
     border-radius: 40px;
-    transition: 0.4s ease-in;
-    margin-top: 5px;
-}
-.button-sesion a{
-    text-decoration: none;
     color: black;
     transition: 0.4s ease-in;
-}
-.button-sesion a:hover{
-    color: white;
-}
-.button-sesion:hover{
-    background-color:  #2C3532;
 }

@@ -16,8 +16,8 @@ productRouter.get('/', async(req, res) =>{
             page: prods.page,
             hasPrevPage: prods.hasPrevPage,
             hasNextPage: prods.hasNextPage,
-            prevLink: prods.hasPrevPage ? `http://${req.headers.host}${req.baseUrl}?limit=${config.limit}&page=${prods.prevPage}${link || ''}&sort=${config.sort.price}` : null,
-            nextLink: prods.hasNextPage ? `http://${req.headers.host}${req.baseUrl}?limit=${config.limit}&page=${prods.nextPage}${link || ''}&sort=${config.sort.price}` : null
+            prevLink: prods.hasPrevPage ? `http://${req.headers.host}${req.baseUrl}?limit=${limit}&page=${prods.prevPage}&category=${category}&sort=${sort}` : null,
+            nextLink: prods.hasNextPage ? `http://${req.headers.host}${req.baseUrl}?limit=${limit}&page=${prods.nextPage}&category=${category}&sort=${sort}` : null
         }
         res.status(200).send({respuesta: "OK" ,mensaje: respuesta})
     }catch(error){

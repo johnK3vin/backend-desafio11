@@ -114,11 +114,11 @@ io.on("connection", async (socket) => {
   socket.on('validatorUser', async (user)=>{
     let x = 'error'
     try{
-      const users = await userManager.find()
-      const indice = users.docs.findIndex(correo => correo.email === user)
-      if(indice != -1) {
-        console.log(users[indice].email)
-        socket.emit('emailValidado', users[indice].email)
+      console.log(`esto recivo: ${user}`)
+      const users = await userManager.findByEmail(user)
+      if(users) {
+        console.log("este es el email: "+users)
+        socket.emit('emailValidado', users.email)
       }else{
         socket.emit('emailValidado', x)
         console.log({respuesta: "Error el buscar email", mensaje:"Email not found"})
